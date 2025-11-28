@@ -35,8 +35,13 @@ for path in list(segmentation_directory.iterdir()):
         original_image = Image.open(io.BytesIO(image_bytes)).convert("RGBA")
         original_image = original_image.resize(TARGET_SIZE, Image.LANCZOS)
 
+        # Use the resized image bytes as the model input so sizes match the requested output.
+        resized_buf = io.BytesIO()
+        original_image.save(resized_buf, format="PNG")
+        resized_image_bytes = resized_buf.getvalue()
+
         # Generate the mask via OpenAI Responses API using the image generation tool.
-        b64_image = base64.b64encode(image_bytes).decode("utf-8")
+        b64_image = base64.b64encode(resized_image_bytes).decode("utf-8")
         response = client.responses.create(
             model="gpt-5",
             input=[
