@@ -39,7 +39,7 @@ class ImageAnalysis(BaseModel):
 
 
 with open(directory / "image_analysis.csv") as f:
-    categories = {row["Category"] for row in DictReader(f)}
+    ground_truths = [ImageAnalysis.model_validate(row) for row in DictReader(f)]
 
-for category in categories:
-    print(category)
+for ground_truth in ground_truths:
+    print(ground_truth)
