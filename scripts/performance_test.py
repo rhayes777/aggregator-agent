@@ -2,6 +2,7 @@ import csv
 import random
 from pathlib import Path
 from csv import DictReader
+import datetime as dt
 
 from aggregator_agent.image_agent import categorise
 from aggregator_agent.schema import LensFitAnalysis, Category
@@ -48,7 +49,9 @@ ground_truths.extend(good_ground_truths[:len(ground_truths)])
 
 random.shuffle(ground_truths)
 
-with open("results.csv", "w+") as f:
+timestamp = dt.datetime.now().isoformat()
+
+with open(f"results-{timestamp}.csv", "w+") as f:
     writer = csv.writer(f)
     writer.writerow(
         [
