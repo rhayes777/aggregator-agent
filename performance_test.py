@@ -1,4 +1,5 @@
 import csv
+import random
 from pathlib import Path
 from csv import DictReader
 
@@ -40,14 +41,16 @@ for file in initial_lens_model_directory.iterdir():
             description="Good",
         ))
 
+random.shuffle(ground_truths)
+
 with open("results.csv", "w+") as f:
     writer = csv.writer(f)
     writer.writerow(
         [
             "id",
             "expected_category",
-            "expected_description",
             "predicted_category",
+            "expected_description",
             "predicted_description",
         ]
     )
@@ -57,7 +60,7 @@ with open("results.csv", "w+") as f:
         writer.writerow([
             ground_truth.id,
             ground_truth.category,
-            ground_truth.description,
             predicted.category,
+            ground_truth.description,
             predicted.description,
         ])
