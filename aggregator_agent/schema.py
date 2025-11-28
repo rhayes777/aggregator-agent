@@ -1,11 +1,6 @@
 from enum import StrEnum
 
-from pathlib import Path
-from csv import DictReader
 from pydantic import BaseModel
-
-directory = Path(__file__).parent
-data_directory = directory / "data"
 
 
 class Category(StrEnum):
@@ -32,14 +27,15 @@ class Category(StrEnum):
     Good = "Good"
 
 
-class ImageAnalysis(BaseModel):
+class LensFitAnalysis(BaseModel):
+    """
+    An analysis of images output from a lensing fit.
+
+    Attributes
+    ---------
+    category - the category to which this image belongs
+    description - a brief description of the image highlighting why it belongs to the given category
+    """
+
     category: Category
-    id: str
     description: str
-
-
-with open(directory / "image_analysis.csv") as f:
-    ground_truths = [ImageAnalysis.model_validate(row) for row in DictReader(f)]
-
-for ground_truth in ground_truths:
-    print(ground_truth)
