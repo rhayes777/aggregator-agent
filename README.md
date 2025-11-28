@@ -13,7 +13,7 @@ well it was fit.
 Usage:
 
 ```bash
-predict_directory.py  "/path/to/lensing/images
+predict_directory.py  "/path/to/lensing/images"
 ```
 
 Images must contain lens subtracted and model output as below:
@@ -39,7 +39,7 @@ Show results output by the performance test along with images.
 Usage:
 
 ```bash
-view_mismatched_results.py --csv results.csv --image-root data/initial_lens_model
+view_mismatched_results.py --csv "results.csv" --image-root "data/initial_lens_model"
 ```
 
 ### Check One
