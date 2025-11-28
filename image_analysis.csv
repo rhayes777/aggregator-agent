@@ -1,55 +1,55 @@
-Bad Model - is a Lens,102019127_NEG598523367504401932,Lens is a bulge + disk and I am using one MGe group for the lens light atm.
-Bad Model - is a Lens,102020056_NEG573379534495223440,Lens light subtrction leaves residuals which one counter image fits.
-Bad Model - is a Lens,102020065_NEG639706305497277844,There are two lens gaalxies in the centre, thius is a group.
-Bad Model - is a Lens,102020534_NEG604836154490669092,Model misses counter image.
-Bad Model - is a Lens,102021009_NEG577024787484062221,Model misses counter image.
-Bad Model - is a Lens,102021016_NEG629685198482852633,Model misses counter image, but is also a group.
-Bad Model - is a Lens,102021493_NEG587807121477852004,lens light subtraction poor due to disk dust.
-Bad Model - is a Lens,102022480_NEG630160205470193218,bad line of sight segmentation.
-Bad Model - is a Lens,102042283_NEG518770667295125494,Lens light subtraction not complex enough.
-Bad Model - is a Lens,102042283_NEG520608563295081214,Lens light subtraction not complex enough?
-Bad Model - is a Lens,102042916_NEG533251142291509670,Model misses counter image.
-Bad Model - is a Lens,102158888_2657819747657129186,bad lens light subtraction.
-Bad Model - is a Lens,102158890_2683357136652678772,bad lens light subtraction due to dust disk.
-Bad Model - is a Lens,102159195_2734094103661424333,probably a dust disk?
-Bad Model - is a Lens,102159488_2717571775663564534,misses conter image
-Bad Model - is a Lens,102160055_2646891602674889078,Bad lens light subtraction.
-Bad Model - is a Lens,102160058_2684023754674529862,misses counter image.
-Bad Model - is a Lens,102160611_2740328687682808789,Is group scale.
-Good Model - not a lens,102020055_NEG563894315496088157,Minimal evidence for counter image in lens subtracted image.
-Good Model - not a lens,102021013_NEG602940269483238112,Hard to judge if counter image is present.
-Good Model - not a lens,102021013_NEG606090281487314103,No evidence for counter image.
-Good Model - not a lens,102021017_NEG633207820486535571,No evidence for counter image.
-Good Model - not a lens,102021496_NEG603335199478099381,No evidence for counter image
-Good Model - not a lens,102021504_NEG669028748480810029,No evidence for counter image.
-Good Model - not a lens,102021984_NEG605671540476154903,Tenuous evidence for counter image.
-Good Model - not a lens,102021985_NEG616063813472801324,Tenuous evidence for counter image.
-Good Model - not a lens,102022974_NEG610978759464405134,No evidence for counter image.
-Good Model - not a lens,102044824_NEG525230483273308137,Tenuous evidence for counter image.
-Good Model - not a lens,102159486_2691200739666476860,Tenuous evidence for counter image.
-Good Model - not a lens,102159489_2728201578663264671,Weird configuration, no clear counter image.
-Might be a lens - hard to judge model,102020061_NEG612388468493726389m,Counter image might not be in data.
-Might be a lens - hard to judge model,102045468_NEG534525411271636586m,Not sure really.
-Might be a lens - hard to judge model,102158894_2733212462655784384m,hard to judge.
-Might be a lens - hard to judge model,102158896_2752149841653729649m,probably misses counter image.
-Data issues,102020528_NEG557594873487530963,Lens is significantly offset due to data reduction issues.
-Data issues,102042915_NEG528545016288651034,A mess.
-Data issues,102157630_2665772836637102014,Weird.
-Data issues,102157955_2685490710638126805,A mess.
-Data issues,102158586_2707908112649845702,centre offset.
-Data issues,102159483_2659872799666371332,scattered light?
-Data issues,102159485_2681289316665353959,yikes
-Data issues,102160056_2663488981675470136,offset centre.
-Fixable,102020066_NEG645419324493086283,Make mask bigger.
-Fixable,102020534_NEG604929086489066527,imporove mask extra galaxies.
-Fixable,102021012_NEG594963796484947260,Make mask bigger.
-Fixable,102021017_NEG637928660482715254,Improve mask, extra galaxies, mask mask little bigger.
-Fixable,102021501_NEG641175215482169059,line of sight not masked.
-Fixable,102021990_NEG651246796473086761,Mask extra galaxies removing image?
-Fixable,102042284_NEG523902104295926900,Mask must be bigger.
-Fixable,102157957_2711813162637737494,Mask must be bigger.
-Fixable,102158270_2654337786643538414,Improve mask, extra galaxies.
-Fixable,102158886_2639435536653600933,Improve mask, extra galaxies.
-Fixable,102158892_2704470582654415692,Bigger mask.
-Fixable,102158894_2730612507653143373,Bigger mask.
-Fixable,102159487_2702648437664620342,Improve mask, extra galaxies.
+"Bad Model - is a Lens",102019127_NEG598523367504401932,"Lens is a bulge + disk and I am using one MGe group for the lens light atm."
+"Bad Model - is a Lens",102020056_NEG573379534495223440,"Lens light subtrction leaves residuals which one counter image fits."
+"Bad Model - is a Lens",102020065_NEG639706305497277844,"There are two lens gaalxies in the centre, thius is a group."
+"Bad Model - is a Lens",102020534_NEG604836154490669092,"Model misses counter image."
+"Bad Model - is a Lens",102021009_NEG577024787484062221,"Model misses counter image."
+"Bad Model - is a Lens",102021016_NEG629685198482852633,"Model misses counter image, but is also a group."
+"Bad Model - is a Lens",102021493_NEG587807121477852004,"lens light subtraction poor due to disk dust."
+"Bad Model - is a Lens",102022480_NEG630160205470193218,"bad line of sight segmentation."
+"Bad Model - is a Lens",102042283_NEG518770667295125494,"Lens light subtraction not complex enough."
+"Bad Model - is a Lens",102042283_NEG520608563295081214,"Lens light subtraction not complex enough?"
+"Bad Model - is a Lens",102042916_NEG533251142291509670,"Model misses counter image."
+"Bad Model - is a Lens",102158888_2657819747657129186,"bad lens light subtraction."
+"Bad Model - is a Lens",102158890_2683357136652678772,"bad lens light subtraction due to dust disk."
+"Bad Model - is a Lens",102159195_2734094103661424333,"probably a dust disk?"
+"Bad Model - is a Lens",102159488_2717571775663564534,"misses conter image"
+"Bad Model - is a Lens",102160055_2646891602674889078,"Bad lens light subtraction."
+"Bad Model - is a Lens",102160058_2684023754674529862,"misses counter image."
+"Bad Model - is a Lens",102160611_2740328687682808789,"Is group scale."
+"Good Model - not a lens",102020055_NEG563894315496088157,"Minimal evidence for counter image in lens subtracted image."
+"Good Model - not a lens",102021013_NEG602940269483238112,"Hard to judge if counter image is present."
+"Good Model - not a lens",102021013_NEG606090281487314103,"No evidence for counter image."
+"Good Model - not a lens",102021017_NEG633207820486535571,"No evidence for counter image."
+"Good Model - not a lens",102021496_NEG603335199478099381,"No evidence for counter image"
+"Good Model - not a lens",102021504_NEG669028748480810029,"No evidence for counter image."
+"Good Model - not a lens",102021984_NEG605671540476154903,"Tenuous evidence for counter image."
+"Good Model - not a lens",102021985_NEG616063813472801324,"Tenuous evidence for counter image."
+"Good Model - not a lens",102022974_NEG610978759464405134,"No evidence for counter image."
+"Good Model - not a lens",102044824_NEG525230483273308137,"Tenuous evidence for counter image."
+"Good Model - not a lens",102159486_2691200739666476860,"Tenuous evidence for counter image."
+"Good Model - not a lens",102159489_2728201578663264671,"Weird configuration, no clear counter image."
+"Might be a lens - hard to judge model",102020061_NEG612388468493726389,"Counter image might not be in data."
+"Might be a lens - hard to judge model",102045468_NEG534525411271636586,"Not sure really."
+"Might be a lens - hard to judge model",102158894_2733212462655784384,"hard to judge."
+"Might be a lens - hard to judge model",102158896_2752149841653729649,"probably misses counter image."
+"Data issues",102020528_NEG557594873487530963,"Lens is significantly offset due to data reduction issues."
+"Data issues",102042915_NEG528545016288651034,"A mess."
+"Data issues",102157630_2665772836637102014,"Weird."
+"Data issues",102157955_2685490710638126805,"A mess."
+"Data issues",102158586_2707908112649845702,"centre offset."
+"Data issues",102159483_2659872799666371332,"scattered light?"
+"Data issues",102159485_2681289316665353959,"yikes"
+"Data issues",102160056_2663488981675470136,"offset centre."
+"Fixable",102020066_NEG645419324493086283,"Make mask bigger."
+"Fixable",102020534_NEG604929086489066527,"imporove mask extra galaxies."
+"Fixable",102021012_NEG594963796484947260,"Make mask bigger."
+"Fixable",102021017_NEG637928660482715254,"Improve mask, extra galaxies, mask mask little bigger."
+"Fixable",102021501_NEG641175215482169059,"line of sight not masked."
+"Fixable",102021990_NEG651246796473086761,"Mask extra galaxies removing image?"
+"Fixable",102042284_NEG523902104295926900,"Mask must be bigger."
+"Fixable",102157957_2711813162637737494,"Mask must be bigger."
+"Fixable",102158270_2654337786643538414,"Improve mask, extra galaxies."
+"Fixable",102158886_2639435536653600933,"Improve mask, extra galaxies."
+"Fixable",102158892_2704470582654415692,"Bigger mask."
+"Fixable",102158894_2730612507653143373,"Bigger mask."
+"Fixable",102159487_2702648437664620342,"Improve mask, extra galaxies."
