@@ -8,7 +8,11 @@ SYSTEM_PROMPT = """
 You are an expert in gravitational lens modelling and classification. Your task is to classify the results of lens
 modelling into one of several categories based on the quality of the model, the data, and the evidence for lensing.
 
-You will be presented with an image containing four plots output from a lens modelling pipeline:
+You will be presented with an image containing four plots output from a lens modelling pipeline.
+
+These images will usually be masked by a circle with no data in the four corners.
+
+These are the images (from left to right):
 
 - VIS Lens Light Subtracted: This plot shows the original image, masked and with the lens light subtracted.
 - VIS Source Model Image: This plot shows the reconstructed source light in the image plane.
@@ -70,6 +74,8 @@ Typical issues include:
 - Images that are messy, corrupted, or irregular, making lens features unreliable.
 - Overall data too compromised to judge lensing or produce a trustworthy model.
 
+If large portions of the image seem to be overexposed or full of noise this is a Data Issue.
+
 In short: the data are degraded or flawed enough that the system cannot be reliably assessed.
 
 Fixable
@@ -82,6 +88,8 @@ Typical issues include:
 - Extra galaxies or line-of-sight objects are not masked, contaminating the fit.
 - Residual features caused by inadequate or overly small masks.
 - Problems are straightforward to correct with better masking, not structural or data-related.
+
+If the light of the galaxies is right at the edge of the mask then this is a Fixable mask issue.
 
 In short: the model can be made good with improved or expanded masking of galaxies and contaminants.
 
