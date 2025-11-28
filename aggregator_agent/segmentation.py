@@ -25,6 +25,7 @@ Mask any pixels containing the lens galaxy with red, the source galaxy with gree
 )
 
 for path in segmentation_directory.iterdir():
+    print("Processing:", path)
     image_path = path / "rgb_zoom.png"
 
     with image_path.open("rb") as f:
@@ -39,5 +40,5 @@ for path in segmentation_directory.iterdir():
         ]
     ).response.images[0]
     image = Image.open(io.BytesIO(mask.data))
-    image.save("mask.png")
-    image.show()
+    image.save(str(path / "mask.png"))
+    print("Saved mask to:", path / "mask.png")
