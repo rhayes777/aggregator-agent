@@ -36,6 +36,7 @@ for path in segmentation_directory.iterdir():
 
         mask = agent.run_sync(
             [
+                "Segment this gravitational lens image into a colour mask as per the instructions.",
                 BinaryContent(
                     data=image_bytes,
                     media_type="image/png"  # or image/jpeg etc. depending on the file
