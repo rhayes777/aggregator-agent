@@ -24,10 +24,10 @@ Ensure the masked pixels are in exactly the same position as the pixels of the o
 TARGET_SIZE = (1024, 1024)
 TARGET_SIZE_STR = f"{TARGET_SIZE[0]}x{TARGET_SIZE[1]}"
 
-for path in list(segmentation_directory.iterdir()):
-    print("Processing:", path)
+
+def process_image(image_path: Path) -> Image.Image:
+    path = image_path.parent
     try:
-        image_path = path / "rgb_zoom.png"
 
         with image_path.open("rb") as f:
             image_bytes = f.read()
@@ -95,5 +95,15 @@ for path in list(segmentation_directory.iterdir()):
         overlay_path = path / "mask_overlay.png"
         overlay.save(str(overlay_path))
         print("Saved overlay to:", overlay_path)
+
+        return image
+    except Exception as e:
+        print("Error processing", path, ":", e)
+
+
+for path in list(segmentation_directory.iterdir()):
+    print("Processing:", path)
+    try:
+        process_image(path / "rgb_zoom.png")
     except Exception as e:
         print("Error processing", path, ":", e)
