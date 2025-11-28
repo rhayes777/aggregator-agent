@@ -33,13 +33,18 @@ ground_truth_paths = {
     ground_truth.image_path for ground_truth in ground_truths
 }
 
+good_ground_truths = []
+
 for file in initial_lens_model_directory.iterdir():
     if file not in ground_truth_paths:
-        ground_truths.append(GroundTruth(
+        good_ground_truths.append(GroundTruth(
             id=file.stem,
             category=Category.Good,
             description="Good",
         ))
+
+random.shuffle(good_ground_truths)
+ground_truths.extend(good_ground_truths[:len(ground_truths)])
 
 random.shuffle(ground_truths)
 
