@@ -18,6 +18,8 @@ Mask any pixels containing the lens galaxy with red, the source galaxy with gree
 The image you output is exactly the same size as the input image. It is given in true colour (RGB) format.
 The lens and other galaxies will appear as bright objects. Focus on larger bright objects rather than just points of noise.
 Ensure the masked pixels are in exactly the same position as the pixels of the objects in the original image.
+The masks can be odd shapes, but should accurately follow the contours of the objects.
+Ensure the masks entirely cover the objects, including any faint outer regions.
 """
 
 TARGET_SIZE = (1024, 1024)
