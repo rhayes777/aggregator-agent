@@ -52,7 +52,6 @@ def main() -> None:
     )
     parser.add_argument(
         "--image-root",
-        default=Path("data/initial_lens_model"),
         type=Path,
         help="Root directory containing <id>.png images.",
     )
