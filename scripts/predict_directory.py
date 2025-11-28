@@ -8,25 +8,31 @@ from pathlib import Path
 
 from aggregator_agent.image_agent import categorise
 
-parser = ArgumentParser("Read images from a directory and assess the quality of the lensing")
 
-parser.add_argument(
-    "directory",
-    type=Path,
-)
-parser.add_argument(
-    "--output",
-    type=Path,
-    default=None,
-)
+def main():
+    parser = ArgumentParser("Read images from a directory and assess the quality of the lensing")
 
-args = parser.parse_args()
+    parser.add_argument(
+        "directory",
+        type=Path,
+    )
+    parser.add_argument(
+        "--output",
+        type=Path,
+        default=None,
+    )
 
-output_filename = args.output or args.directory.with_name(f"{args.directory.stem}_categorised.csv")
+    args = parser.parse_args()
 
-with output_filename.open("w") as f:
-    writer = csv.writer(f)
-    writer.writerow(["id", "category", "description"])
-    for path in args.directory.iterdir():
-        result = categorise(path)
-        writer.writerow([path.stem, result.category, result.description])
+    output_filename = args.output or args.directory.with_name(f"{args.directory.stem}_categorised.csv")
+
+    with output_filename.open("w") as f:
+        writer = csv.writer(f)
+        writer.writerow(["id", "category", "description"])
+        for path in args.directory.iterdir():
+            result = categorise(path)
+            writer.writerow([path.stem, result.category, result.description])
+
+
+if __name__ == "__main__":
+    main()

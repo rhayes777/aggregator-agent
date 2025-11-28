@@ -27,3 +27,6 @@ managed = true
 [build-system]
 requires = ["setuptools>=61"]
 build-backend = "setuptools.build_meta"
+
+[project.scripts]
+predict_directory = "scripts.predict_directory:main"
