@@ -1,3 +1,4 @@
+import csv
 from pathlib import Path
 from csv import DictReader
 
@@ -39,14 +40,24 @@ for file in initial_lens_model_directory.iterdir():
             description="Good",
         ))
 
-
-for ground_truth in ground_truths:
-    print(ground_truth)
-
-# ground_truth = ground_truths[1]
-#
-# print("Expected")
-# print(ground_truth.model_dump_json(indent=2))
-#
-# print("\nActual")
-# print(categorise(ground_truth.image_path).model_dump_json(indent=2))
+with open("results.csv", "w+") as f:
+    writer = csv.writer(f)
+    writer.writerow(
+        [
+            "id",
+            "expected_category",
+            "expected_description",
+            "predicted_category",
+            "predicted_description",
+        ]
+    )
+    for ground_truth in ground_truths:
+        predicted = categorise(ground_truth.image_path)
+        print(f"Expected: {ground_truth} ; Predicted {predicted}")
+        writer.writerow([
+            ground_truth.id,
+            ground_truth.category,
+            ground_truth.description,
+            predicted.category,
+            predicted.description,
+        ])
