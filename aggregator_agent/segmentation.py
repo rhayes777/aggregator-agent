@@ -5,8 +5,6 @@ from pathlib import Path
 from PIL import Image
 from openai import OpenAI
 
-
-
 client = OpenAI()
 
 INSTRUCTIONS = """
@@ -97,6 +95,3 @@ def process_image(image_path: Path) -> Image.Image:
     print("Saved overlay to:", overlay_path)
 
     return image
-
-
-
