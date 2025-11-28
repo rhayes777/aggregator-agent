@@ -47,7 +47,6 @@ def main() -> None:
     )
     parser.add_argument(
         "--csv",
-        default="results.csv",
         type=Path,
         help="Path to results CSV (default: results.csv)",
     )

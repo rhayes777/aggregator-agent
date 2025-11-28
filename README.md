@@ -39,7 +39,7 @@ Show results output by the performance test along with images.
 Usage:
 
 ```bash
-view_mismatched_results.py
+view_mismatched_results.py --csv results.csv
 ```
 
 ### Check One
