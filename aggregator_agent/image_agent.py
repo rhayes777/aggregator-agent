@@ -93,7 +93,7 @@ The lens–non-lens decision is clear, with:
 
 - Clean residuals after lens-light subtraction.
 - No major modelling issues, no masking failures, and no data problems.
-- Counter images reproduced correctly if it is a lens, or
+- ALL counter images reproduced correctly if it is a lens, or
 - No counter-image evidence if it is not a lens, fully consistent with expectations.
 
 In short: the data are good, the model is adequate, and the system can be confidently classified.
