@@ -1,3 +1,7 @@
+#!/usr/bin/env Python
+"""
+Use a VLM to categorise images produced by lens modelling in a given directory.
+"""
 import csv
 from argparse import ArgumentParser
 from pathlib import Path
