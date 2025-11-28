@@ -17,6 +17,9 @@ Your task is to identify and segment light from different components in the imag
 Mask any pixels containing the lens galaxy with red, the source galaxy with green, and other objects with blue.
 """
 
+TARGET_SIZE = (1024, 1024)
+TARGET_SIZE_STR = f"{TARGET_SIZE[0]}x{TARGET_SIZE[1]}"
+
 for path in segmentation_directory.iterdir():
     print("Processing:", path)
     try:
@@ -26,6 +29,7 @@ for path in segmentation_directory.iterdir():
             image_bytes = f.read()
 
         original_image = Image.open(io.BytesIO(image_bytes)).convert("RGBA")
+        original_image = original_image.resize(TARGET_SIZE, Image.LANCZOS)
 
         # Generate the mask via OpenAI Responses API using the image generation tool.
         b64_image = base64.b64encode(image_bytes).decode("utf-8")
@@ -46,7 +50,8 @@ for path in segmentation_directory.iterdir():
             tools=[
                 {
                     "type": "image_generation",
-                    "size": "1024x1024", "quality": "low",
+                    "size": TARGET_SIZE_STR,
+                    "quality": "low",
                 }
             ],
         )
@@ -62,9 +67,6 @@ for path in segmentation_directory.iterdir():
 
         mask_bytes = base64.b64decode(image_data[0])
         image = Image.open(io.BytesIO(mask_bytes)).convert("RGBA")
-
-        # Resize (no cropping) to match the source image so the overlay lines up.
-        image = image.resize(original_image.size, Image.NEAREST)
 
         # Make black pixels fully transparent and keep coloured regions translucent.
         translucent_alpha = 140
