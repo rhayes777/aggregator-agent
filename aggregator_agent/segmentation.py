@@ -24,7 +24,7 @@ Ensure the masked pixels are in exactly the same position as the pixels of the o
 TARGET_SIZE = (1024, 1024)
 TARGET_SIZE_STR = f"{TARGET_SIZE[0]}x{TARGET_SIZE[1]}"
 
-for path in segmentation_directory.iterdir():
+for path in list(segmentation_directory.iterdir()):
     print("Processing:", path)
     try:
         image_path = path / "rgb_zoom.png"
@@ -55,7 +55,7 @@ for path in segmentation_directory.iterdir():
                 {
                     "type": "image_generation",
                     "size": TARGET_SIZE_STR,
-                    "quality": "low",
+                    "quality": "high",
                 }
             ],
         )
