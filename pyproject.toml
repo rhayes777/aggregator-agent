@@ -7,7 +7,10 @@ requires-python = ">=3.11"
 authors = [{ name = "Richard Hayes" }]
 
 # Your runtime dependencies
-dependencies = []
+dependencies = [
+    "pydantic>=2.12.5",
+    "pydantic-ai>=1.25.0",
+]
 
 [project.optional-dependencies]
 dev = ["pytest", "ruff", "mypy"]
