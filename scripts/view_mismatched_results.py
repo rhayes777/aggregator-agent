@@ -15,10 +15,6 @@ from typing import Dict, Iterable
 import matplotlib.pyplot as plt
 
 
-def is_good(category: str) -> bool:
-    return category.strip().lower() == "good"
-
-
 def read_rows(csv_path: Path) -> Iterable[Dict[str, str]]:
     with csv_path.open(newline="") as f:
         reader = csv.DictReader(f)
@@ -75,9 +71,6 @@ def main() -> None:
         expected_desc = row.get("expected_description", "").strip()
         predicted_desc = row.get("predicted_description", "").strip()
         sample_id = row.get("id", "").strip()
-
-        if is_good(expected) and is_good(predicted):
-            continue
 
         print("-" * 60)
         print(f"ID: {sample_id}")
