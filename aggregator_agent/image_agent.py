@@ -92,3 +92,15 @@ The lens–non-lens decision is clear, with:
 
 In short: the data are good, the model is adequate, and the system can be confidently classified.
 """
+
+
+from pydantic_ai.models.openai import OpenAIImage
+from pydantic_ai import Agent
+
+agent = Agent(
+    "openai:gpt-4o",
+)
+
+result = agent.run(
+    "Describe this image", images=[OpenAIImage.from_file_path("my_image.png")]
+)

@@ -15,6 +15,10 @@ dependencies = [
 [project.optional-dependencies]
 dev = ["pytest", "ruff", "mypy"]
 
+[tool.setuptools.packages.find]
+include = ["aggregator_agent*"]
+exclude = ["data*"]
+
 # uv-specific settings (optional but recommended)
 [tool.uv]
 # enables lockfile, needed for reproducible envs
