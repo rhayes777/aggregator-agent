@@ -100,7 +100,7 @@ In short: the data are good, the model is adequate, and the system can be confid
 """
 
 agent = Agent(
-    model='gateway/openai:gpt-5',
+    model='gpt-5',
     instructions=SYSTEM_PROMPT,
     output_type=LensFitAnalysis,
 )
