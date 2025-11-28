@@ -1,30 +1,43 @@
-from PIL import Image
+import io
 from pathlib import Path
+
+from PIL import Image
+from pydantic_ai import Agent, ImageGenerationTool, BinaryContent
+from pydantic_ai.models.openai import OpenAIResponsesModel
 
 directory = Path(__file__).parents[1]
 segmentation_directory = directory / "data/segmentation"
 
+agent = Agent(
+    model=OpenAIResponsesModel('gpt-5'),
+    builtin_tools=[
+        ImageGenerationTool(
+            size="1024x1024",
+            quality="low",
+        )
+    ],
+    instructions="""
+You are an expert astronomer analysing an image of a gravitational lens.
+
+Your task is to identify and segment light from different components in the image, such as the lens galaxy, source galaxy, and any nearby objects.
+Mask any pixels containing the lens galaxy with red, the source galaxy with green, and other objects with blue.
+"""
+)
+
 for path in segmentation_directory.iterdir():
-    # Load image (RGB assumed)
-    img0 = Image.open(path / "rgb_0.png")
-    w, h = img0.size
+    image_path = path / "rgb_zoom.png"
 
-    # Crop central 100x100
-    crop_size = 100
-    half = crop_size // 2
+    with image_path.open("rb") as f:
+        image_bytes = f.read()
 
-    center_x = w // 2
-    center_y = h // 2
-
-    left = center_x - half
-    right = center_x + half
-    top = center_y - half
-    bottom = center_y + half
-
-    # Perform the crop
-    crop = img0.crop((left, top, right, bottom))
-
-    # Save output
-    crop.save(path / "rgb_zoom.png")
-
-    print("Saved:", path / "rgb_zoom.png")
+    mask = agent.run_sync(
+        [
+            BinaryContent(
+                data=image_bytes,
+                media_type="image/png"  # or image/jpeg etc. depending on the file
+            ),
+        ]
+    ).response.images[0]
+    image = Image.open(io.BytesIO(mask.data))
+    image.save("mask.png")
+    image.show()
