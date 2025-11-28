@@ -1,0 +1,25 @@
+[project]
+name = "aggregator-agent"
+version = "0.1.0"
+description = ""
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [{ name = "Richard Hayes" }]
+
+# Your runtime dependencies
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest", "ruff", "mypy"]
+
+# uv-specific settings (optional but recommended)
+[tool.uv]
+# enables lockfile, needed for reproducible envs
+managed = true
+
+# if you want to use uv’s faster resolution
+index-strategy = "fast"
+
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"

@@ -1,4 +1,10 @@
 from pathlib import Path
+from csv import DictReader
+
+directory = Path(__file__).parent
+data_directory = directory / "data"
 
 
-data_directory = Path(__file__).parent / "data"
+with open(directory / "image_analysis.csv") as f:
+    for row in DictReader(f):
+        print(row)
