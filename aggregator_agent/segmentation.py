@@ -1,28 +1,21 @@
+import base64
 import io
 from pathlib import Path
 
 from PIL import Image
-from pydantic_ai import Agent, ImageGenerationTool, BinaryContent
-from pydantic_ai.models.openai import OpenAIResponsesModel
+from openai import OpenAI
 
 directory = Path(__file__).parents[1]
 segmentation_directory = directory / "data/segmentation"
 
-agent = Agent(
-    model=OpenAIResponsesModel('gpt-5'),
-    builtin_tools=[
-        ImageGenerationTool(
-            size="1024x1024",
-            quality="low",
-        )
-    ],
-    instructions="""
+client = OpenAI()
+
+INSTRUCTIONS = """
 You are an expert astronomer analysing an image of a gravitational lens.
 
 Your task is to identify and segment light from different components in the image, such as the lens galaxy, source galaxy, and any nearby objects.
 Mask any pixels containing the lens galaxy with red, the source galaxy with green, and other objects with blue.
 """
-)
 
 for path in segmentation_directory.iterdir():
     print("Processing:", path)
@@ -34,16 +27,41 @@ for path in segmentation_directory.iterdir():
 
         original_image = Image.open(io.BytesIO(image_bytes)).convert("RGBA")
 
-        mask = agent.run_sync(
-            [
-                "Segment this gravitational lens image into a colour mask as per the instructions.",
-                BinaryContent(
-                    data=image_bytes,
-                    media_type="image/png"  # or image/jpeg etc. depending on the file
-                ),
-            ]
-        ).response.images[0]
-        image = Image.open(io.BytesIO(mask.data)).convert("RGBA")
+        # Generate the mask via OpenAI Responses API using the image generation tool.
+        b64_image = base64.b64encode(image_bytes).decode("utf-8")
+        response = client.responses.create(
+            model="gpt-5",
+            input=[
+                {
+                    "role": "user",
+                    "content": [
+                        {"type": "input_text", "text": INSTRUCTIONS.strip()},
+                        {
+                            "type": "input_image",
+                            "image_url": f"data:image/png;base64,{b64_image}",
+                        },
+                    ],
+                }
+            ],
+            tools=[
+                {
+                    "type": "image_generation",
+                    "size": "1024x1024", "quality": "low",
+                }
+            ],
+        )
+
+        image_data = [
+            output.result
+            for output in response.output
+            if output.type == "image_generation_call"
+        ]
+
+        if not image_data:
+            raise RuntimeError("No image returned from OpenAI image generation tool.")
+
+        mask_bytes = base64.b64decode(image_data[0])
+        image = Image.open(io.BytesIO(mask_bytes)).convert("RGBA")
 
         # Resize (no cropping) to match the source image so the overlay lines up.
         image = image.resize(original_image.size, Image.NEAREST)
