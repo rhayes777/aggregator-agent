@@ -8,6 +8,7 @@ authors = [{ name = "Richard Hayes" }]
 
 # Your runtime dependencies
 dependencies = [
+    "matplotlib>=3.10.7",
     "pydantic>=2.12.5",
     "pydantic-ai>=1.25.0",
 ]
