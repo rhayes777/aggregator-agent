@@ -17,9 +17,6 @@ dev = ["pytest", "ruff", "mypy"]
 # enables lockfile, needed for reproducible envs
 managed = true
 
-# if you want to use uv’s faster resolution
-index-strategy = "fast"
-
 [build-system]
 requires = ["setuptools>=61"]
 build-backend = "setuptools.build_meta"
