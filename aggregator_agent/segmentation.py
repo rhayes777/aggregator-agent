@@ -15,6 +15,10 @@ You are an expert astronomer analysing an image of a gravitational lens.
 
 Your task is to identify and segment light from different components in the image, such as the lens galaxy, source galaxy, and any nearby objects.
 Mask any pixels containing the lens galaxy with red, the source galaxy with green, and other objects with blue.
+
+The image you output is exactly the same size as the input image. It is given in true colour (RGB) format.
+The lens and other galaxies will appear as bright objects. Focus on larger bright objects rather than just points of noise.
+Ensure the masked pixels are in exactly the same position as the pixels of the objects in the original image.
 """
 
 TARGET_SIZE = (1024, 1024)
