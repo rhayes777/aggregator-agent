@@ -6,7 +6,7 @@ from csv import DictReader
 from aggregator_agent.image_agent import categorise
 from aggregator_agent.schema import LensFitAnalysis, Category
 
-directory = Path(__file__).parent
+directory = Path(__file__).parents[1]
 data_directory = directory / "data"
 initial_lens_model_directory = data_directory / "initial_lens_model"
 
