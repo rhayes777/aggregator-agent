@@ -1,3 +1,9 @@
+from pathlib import Path
+
+from pydantic_ai import Agent, BinaryContent
+
+from aggregator_agent.schema import LensFitAnalysis
+
 SYSTEM_PROMPT = """
 You are an expert in gravitational lens modelling and classification. Your task is to classify the results of lens
 modelling into one of several categories based on the quality of the model, the data, and the evidence for lensing.
@@ -93,14 +99,25 @@ The lens–non-lens decision is clear, with:
 In short: the data are good, the model is adequate, and the system can be confidently classified.
 """
 
-
-from pydantic_ai.models.openai import OpenAIImage
-from pydantic_ai import Agent
-
 agent = Agent(
-    "openai:gpt-4o",
+    model='gateway/openai:gpt-5',
+    instructions=SYSTEM_PROMPT,
+    output_type=LensFitAnalysis,
 )
 
-result = agent.run(
-    "Describe this image", images=[OpenAIImage.from_file_path("my_image.png")]
-)
+
+def categorise(image_path: Path) -> LensFitAnalysis:
+    """
+    Ask the LLM to categorise the image at the given path.
+    """
+    with image_path.open("rb") as f:
+        image_bytes = f.read()
+
+    return agent.run_sync(
+        [
+            BinaryContent(
+                data=image_bytes,
+                media_type="image/png"  # or image/jpeg etc. depending on the file
+            ),
+        ]
+    ).output
