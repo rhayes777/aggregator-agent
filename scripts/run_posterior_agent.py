@@ -1,3 +1,6 @@
+"""
+Uses a VLM to analyse posterior distributions by inspecting corner plots.
+"""
 from argparse import ArgumentParser
 from pathlib import Path
 from autofit.aggregator.aggregator import Aggregator
