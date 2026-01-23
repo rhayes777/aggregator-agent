@@ -108,7 +108,7 @@ In short: the data are good, the model is adequate, and the system can be confid
 """
 
 agent = Agent(
-    model='gpt-5',
+    model="gpt-5",
     instructions=SYSTEM_PROMPT,
     output_type=LensFitAnalysis,
 )
@@ -125,7 +125,7 @@ def categorise(image_path: Path) -> LensFitAnalysis:
         [
             BinaryContent(
                 data=image_bytes,
-                media_type="image/png"  # or image/jpeg etc. depending on the file
+                media_type="image/png",  # or image/jpeg etc. depending on the file
             ),
         ]
     ).output

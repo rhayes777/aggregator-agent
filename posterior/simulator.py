@@ -88,31 +88,29 @@ def simulate_dataset_1d_via_gaussian_from(gaussian, dataset_path):
             pass
 
 
-
-
 total_datasets = 50
 
 for i in range(total_datasets):
-
-    dataset_path = path.join(
-        "dataset", f"dataset_{i}"
-    )
+    dataset_path = path.join("dataset", f"dataset_{i}")
 
     centre_prior = af.UniformPrior(
-        lower_limit=40.0, upper_limit=60.0,
+        lower_limit=40.0,
+        upper_limit=60.0,
     )
     normalization_prior = af.UniformPrior(
-        lower_limit=1.0, upper_limit=1e2,
+        lower_limit=1.0,
+        upper_limit=1e2,
     )
     sigma_prior = af.UniformPrior(
-        lower_limit=1.0, upper_limit=10.0,
+        lower_limit=1.0,
+        upper_limit=10.0,
     )
 
     centre = centre_prior.value_for(unit=float(np.random.random(1)))
     normalization_value = normalization_prior.value_for(unit=float(np.random.random(1)))
     sigma_value = sigma_prior.value_for(unit=float(np.random.random(1)))
 
-    gaussian = af.ex.Gaussian(centre=centre, normalization=normalization_value, sigma=sigma_value)
-    simulate_dataset_1d_via_gaussian_from(
-        gaussian=gaussian, dataset_path=dataset_path
+    gaussian = af.ex.Gaussian(
+        centre=centre, normalization=normalization_value, sigma=sigma_value
     )
+    simulate_dataset_1d_via_gaussian_from(gaussian=gaussian, dataset_path=dataset_path)

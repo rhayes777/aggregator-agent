@@ -2,6 +2,7 @@
 """
 Use a VLM to categorise images produced by lens modelling in a given directory.
 """
+
 import csv
 from argparse import ArgumentParser
 from pathlib import Path
@@ -10,7 +11,9 @@ from aggregator_agent.image_agent import categorise
 
 
 def main():
-    parser = ArgumentParser("Read images from a directory and assess the quality of the lensing")
+    parser = ArgumentParser(
+        "Read images from a directory and assess the quality of the lensing"
+    )
 
     parser.add_argument(
         "directory",
@@ -24,7 +27,9 @@ def main():
 
     args = parser.parse_args()
 
-    output_filename = args.output or args.directory.with_name(f"{args.directory.stem}_categorised.csv")
+    output_filename = args.output or args.directory.with_name(
+        f"{args.directory.stem}_categorised.csv"
+    )
 
     with output_filename.open("w") as f:
         writer = csv.writer(f)

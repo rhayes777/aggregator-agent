@@ -30,22 +30,22 @@ class GroundTruth(LensFitAnalysis):
 with open(directory / "image_analysis.csv") as f:
     ground_truths = [GroundTruth.model_validate(row) for row in DictReader(f)]
 
-ground_truth_paths = {
-    ground_truth.image_path for ground_truth in ground_truths
-}
+ground_truth_paths = {ground_truth.image_path for ground_truth in ground_truths}
 
 good_ground_truths = []
 
 for file in initial_lens_model_directory.iterdir():
     if file not in ground_truth_paths:
-        good_ground_truths.append(GroundTruth(
-            id=file.stem,
-            category=Category.Good,
-            description="Good",
-        ))
+        good_ground_truths.append(
+            GroundTruth(
+                id=file.stem,
+                category=Category.Good,
+                description="Good",
+            )
+        )
 
 random.shuffle(good_ground_truths)
-ground_truths.extend(good_ground_truths[:len(ground_truths)])
+ground_truths.extend(good_ground_truths[: len(ground_truths)])
 
 random.shuffle(ground_truths)
 
@@ -65,10 +65,12 @@ with open(f"results-{timestamp}.csv", "w+") as f:
     for ground_truth in ground_truths:
         predicted = categorise(ground_truth.image_path)
         print(f"Expected: {ground_truth} ; Predicted {predicted}")
-        writer.writerow([
-            ground_truth.id,
-            ground_truth.category,
-            predicted.category,
-            ground_truth.description,
-            predicted.description,
-        ])
+        writer.writerow(
+            [
+                ground_truth.id,
+                ground_truth.category,
+                predicted.category,
+                ground_truth.description,
+                predicted.description,
+            ]
+        )

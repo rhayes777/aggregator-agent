@@ -37,7 +37,7 @@ from os import path
 total_datasets = 50
 
 for i in range(total_datasets):
-    dataset_path = path.join("dataset", f"dataset_{i}")
+    dataset_path = path.join("dataset_dual", f"dataset_{i}")
 
     data = af.util.numpy_array_from_json(file_path=path.join(dataset_path, "data.json"))
     noise_map = af.util.numpy_array_from_json(
@@ -48,15 +48,24 @@ for i in range(total_datasets):
     print("Model `Gaussian` object: \n")
     print(model)
 
-    model.centre = af.UniformPrior(lower_limit=0.0, upper_limit=100.0)
-    model.normalization = af.UniformPrior(lower_limit=0.0, upper_limit=1e2)
-    model.sigma = af.UniformPrior(lower_limit=0.0, upper_limit=30.0)
+    centre_prior = af.UniformPrior(
+        lower_limit=40.0,
+        upper_limit=60.0,
+    )
+    normalization_prior = af.UniformPrior(
+        lower_limit=1.0,
+        upper_limit=1e2,
+    )
+    sigma_prior = af.UniformPrior(
+        lower_limit=1.0,
+        upper_limit=10.0,
+    )
 
     analysis = af.ex.Analysis(data=data, noise_map=noise_map)
 
     search = af.DynestyStatic(
         nlive=50,  # Example how to customize the search settings
-        path_prefix="fit_good",
+        path_prefix="fit_dual",
         name=f"dataset_{i}_fit",
     )
 

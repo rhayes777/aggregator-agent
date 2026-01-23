@@ -31,25 +31,18 @@ To begin, lets import ``autofit`` (and ``numpy``) using the convention below:
 # print(f"Working Directory has been set to `{workspace_path}`")
 
 import autofit as af
-import autofit.plot as aplt
 
-import matplotlib.pyplot as plt
-import numpy as np
 from os import path
 
 total_datasets = 50
 
 for i in range(total_datasets):
-
-    dataset_path = path.join(
-        "dataset", f"dataset_{i}"
-    )
+    dataset_path = path.join("dataset", f"dataset_{i}")
 
     data = af.util.numpy_array_from_json(file_path=path.join(dataset_path, "data.json"))
     noise_map = af.util.numpy_array_from_json(
         file_path=path.join(dataset_path, "noise_map.json")
     )
-
 
     model = af.Model(af.ex.Gaussian)
     print("Model `Gaussian` object: \n")
@@ -61,19 +54,13 @@ for i in range(total_datasets):
     model.normalization = af.UniformPrior(lower_limit=0.0, upper_limit=1e2)
     model.sigma = af.UniformPrior(lower_limit=0.0, upper_limit=30.0)
 
-
-
-
     analysis = af.ex.Analysis(data=data, noise_map=noise_map)
-
-
 
     search = af.DynestyStatic(
         nlive=50,  #  Ruin fit quality by setting nlive very low
         path_prefix="fit_bad",
         name=f"dataset_{i}_fit",
     )
-
 
     print(
         """
@@ -83,4 +70,3 @@ for i in range(total_datasets):
     )
 
     result = search.fit(model=model, analysis=analysis)
-
