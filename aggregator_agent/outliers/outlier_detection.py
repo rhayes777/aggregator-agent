@@ -2,12 +2,12 @@ from collections import defaultdict
 
 from autofit import SearchOutput
 import pandas as pd
-from autofit.database.aggregator.aggregator import AbstractAggregator
+from autofit.database.aggregator.aggregator import AbstractAggregator, Aggregator
 
 from aggregator_agent.outliers.pca_mahalanobis import pca_mahalanobis_outliers, plot_outlier_diagnostics
 
 
-def identify_outliers(aggregator: AbstractAggregator, ) -> list[SearchOutput]:
+def identify_outliers(aggregator: AbstractAggregator | Aggregator) -> list[SearchOutput]:
     """
     Identify outlier search outputs in the given aggregator using PCA and Mahalanobis distance.
 
