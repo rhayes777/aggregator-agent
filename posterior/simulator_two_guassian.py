@@ -92,16 +92,16 @@ for i in range(total_datasets):
     dataset_path = path.join("dataset_dual", f"dataset_{i}")
 
     centre_prior = af.UniformPrior(
-        lower_limit=40.0,
-        upper_limit=55.0,
+        lower_limit=20.0,
+        upper_limit=80.0,
     )
     normalization_prior = af.UniformPrior(
         lower_limit=1.0,
-        upper_limit=1e2,
+        upper_limit=1e3,
     )
     sigma_prior = af.UniformPrior(
         lower_limit=1.0,
-        upper_limit=10.0,
+        upper_limit=100.0,
     )
 
     gaussian_0 = af.ex.Gaussian(
@@ -110,10 +110,6 @@ for i in range(total_datasets):
         sigma=sigma_prior.value_for(unit=float(np.random.random(1))),
     )
 
-    centre_prior = af.UniformPrior(
-        lower_limit=45.0,
-        upper_limit=60.0,
-    )
     gaussian_1 = af.ex.Gaussian(
         centre=centre_prior.value_for(unit=float(np.random.random(1))),
         normalization=normalization_prior.value_for(unit=float(np.random.random(1))),
