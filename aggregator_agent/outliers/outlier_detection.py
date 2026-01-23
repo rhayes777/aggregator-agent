@@ -5,6 +5,10 @@ import pandas as pd
 from autofit.database.aggregator.aggregator import AbstractAggregator, Aggregator
 
 from aggregator_agent.outliers.pca_mahalanobis import pca_mahalanobis_outliers, plot_outlier_diagnostics
+import logging
+
+
+logger = logging.getLogger(__name__)
 
 
 def identify_outliers(aggregator: AbstractAggregator | Aggregator) -> list[SearchOutput]:
@@ -24,8 +28,11 @@ def identify_outliers(aggregator: AbstractAggregator | Aggregator) -> list[Searc
     search_outputs = list(aggregator)
 
     for output in search_outputs:
-        for key, value in output.samples_summary.max_log_likelihood_sample.kwargs.items():
-            data[key].append(value)
+        try:
+            for key, value in output.samples_summary.max_log_likelihood_sample.kwargs.items():
+                data[key].append(value)
+        except Exception as e:
+            logger.exception(f"Failed to process output {output}: {e}")
 
     df = pd.DataFrame(data)
 
