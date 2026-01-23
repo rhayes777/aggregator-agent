@@ -29,9 +29,7 @@ class PosteriorFitAnalysis:
     @property
     def image_bytes(self) -> bytes:
         with Image.open(self.corner_plot_path) as img:
-            img = img.convert("RGB")  # ensure consistent format
-
-            # Resize in-place, preserving aspect ratio
+            img = img.convert("RGB")
             img.thumbnail(
                 (self.max_image_size, self.max_image_size),
                 Image.Resampling.LANCZOS,
@@ -43,7 +41,7 @@ class PosteriorFitAnalysis:
 
     def corner_plot_analysis(self) -> str:
         agent = Agent(
-            model="gpt-5",
+            model="gpt-5.2",
             instructions=CORNER_PLOT_SYSTEM_PROMPT,
         )
 
@@ -51,7 +49,7 @@ class PosteriorFitAnalysis:
             [
                 BinaryContent(
                     data=self.image_bytes,
-                    media_type="image/png",  # or image/jpeg etc. depending on the file
+                    media_type="image/png",
                 ),
             ]
         ).output
