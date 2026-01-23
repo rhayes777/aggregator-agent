@@ -16,6 +16,10 @@ parser.add_argument(
 args = parser.parse_args()
 data = defaultdict(list)
 
+aggregator = Aggregator.from_directory(
+        directory=args.path,
+)
+
 for output in Aggregator.from_directory(
         directory=args.path,
 ):
@@ -25,6 +29,9 @@ for output in Aggregator.from_directory(
 df = pd.DataFrame(data)
 
 result = pca_mahalanobis_outliers(df, pca_variance=0.95, alpha=0.99, robust=True)
-print("Outlier index values:", result.outlier_indices)
-print("Outlier integer positions:", result.outlier_positions)
-plot_outlier_diagnostics(df, result, pca_variance=0.95)
+
+print("Outlier Detection Result:")
+print(result.outlier_indices)
+
+for index in result.outlier_indices:
+    print(aggregator[index])
