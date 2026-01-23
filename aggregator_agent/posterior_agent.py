@@ -24,7 +24,6 @@ If there is any indication of multi-modal structure, explicitly state this and i
 You may also comment on any other posterior pathologies or anomalies not explicitly listed above if they are evident from the plot.
 
 Conclude with a concise overall judgement of fit quality (e.g. well-constrained, weakly constrained, or problematic) and briefly justify your assessment.
-
 """
 
 
@@ -84,7 +83,7 @@ class PosteriorFitAnalysis:
             output_type=Result,
         )
 
-        result = agent.run_sync(
+        return agent.run_sync(
             [
                 BinaryContent(
                     data=self._image_bytes,
@@ -92,5 +91,3 @@ class PosteriorFitAnalysis:
                 ),
             ]
         ).output
-
-        return result
