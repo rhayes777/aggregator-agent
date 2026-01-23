@@ -1,6 +1,7 @@
 """
 Uses a VLM to analyse posterior distributions by inspecting corner plots.
 """
+
 from argparse import ArgumentParser
 from pathlib import Path
 from autofit.aggregator.aggregator import Aggregator
@@ -24,15 +25,14 @@ args = parser.parse_args()
 
 output_file = args.path / "posterior_analysis_results.csv"
 
-with open(output_file, mode="w", newline='') as csvfile:
-    fieldnames = ['path', 'explanation', 'is_good_fit', 'may_be_multi_modal']
+with open(output_file, mode="w", newline="") as csvfile:
+    fieldnames = ["path", "explanation", "is_good_fit", "may_be_multi_modal"]
     writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
     writer.writeheader()
 
     for output in Aggregator.from_directory(
         directory=args.path,
     ):
-
         analysis = PosteriorFitAnalysis(
             search_output=output,
             max_image_size=args.max_size,
@@ -42,10 +42,11 @@ with open(output_file, mode="w", newline='') as csvfile:
         print("Corner Plot Analysis Result:")
         print(result)
 
-        writer.writerow({
-            'path': str(output.directory.relative_to(args.path)),
-            'explanation': result.explanation,
-            'is_good_fit': result.is_good_fit,
-            'may_be_multi_modal': result.may_be_multi_modal,
-        })
-
+        writer.writerow(
+            {
+                "path": str(output.directory.relative_to(args.path)),
+                "explanation": result.explanation,
+                "is_good_fit": result.is_good_fit,
+                "may_be_multi_modal": result.may_be_multi_modal,
+            }
+        )

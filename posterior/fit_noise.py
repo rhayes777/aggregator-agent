@@ -24,7 +24,8 @@ overviews and the **PyAutoFit** cookbooks.
 
 To begin, lets import ``autofit`` (and ``numpy``) using the convention below:
 """
-from random import random, uniform
+
+from random import uniform
 
 # %matplotlib inline
 # from pyprojroot import here

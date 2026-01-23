@@ -27,13 +27,13 @@ class OutlierResult:
 
 
 def pca_mahalanobis_outliers(
-        df: pd.DataFrame,
-        *,
-        cols: Sequence[str] | None = None,
-        pca_variance: float = 0.95,
-        alpha: float = 0.99,
-        robust: bool = True,
-        random_state: int = 0,
+    df: pd.DataFrame,
+    *,
+    cols: Sequence[str] | None = None,
+    pca_variance: float = 0.95,
+    alpha: float = 0.99,
+    robust: bool = True,
+    random_state: int = 0,
 ) -> OutlierResult:
     """
     Detect multivariate outliers via Standardize -> PCA -> (Robust) Mahalanobis.
@@ -127,13 +127,13 @@ def pca_mahalanobis_outliers(
 
 
 def plot_outlier_diagnostics(
-        df: pd.DataFrame,
-        result: OutlierResult,
-        *,
-        cols: Sequence[str] | None = None,
-        pca_variance: float = 0.95,
-        random_state: int = 0,
-        show: bool = True,
+    df: pd.DataFrame,
+    result: OutlierResult,
+    *,
+    cols: Sequence[str] | None = None,
+    pca_variance: float = 0.95,
+    random_state: int = 0,
+    show: bool = True,
 ) -> None:
     """
     Creates standard diagnostics:

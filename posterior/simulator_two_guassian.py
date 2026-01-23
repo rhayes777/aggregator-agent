@@ -8,9 +8,9 @@ import autofit as af
 
 
 def simulate_dataset_1d_via_two_gaussians_from(
-        gaussian_0,
-        gaussian_1,
-        dataset_path,
+    gaussian_0,
+    gaussian_1,
+    dataset_path,
 ):
     """
     Simulate a 1D dataset composed of the sum of two Gaussian profiles.

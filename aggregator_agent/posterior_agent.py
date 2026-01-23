@@ -36,6 +36,7 @@ class Result(BaseModel):
         is_good_fit (bool): Whether the fit is considered good or not.
         may_be_multi_modal (bool): Whether the posterior distributions may be multi-modal.
     """
+
     explanation: str
     is_good_fit: bool
     may_be_multi_modal: bool
@@ -43,9 +44,9 @@ class Result(BaseModel):
 
 class PosteriorFitAnalysis:
     def __init__(
-            self,
-            search_output: AbstractSearchOutput,
-            max_image_size: int = MAX_SIZE,
+        self,
+        search_output: AbstractSearchOutput,
+        max_image_size: int = MAX_SIZE,
     ):
         """
         Analyzes the posterior fit quality using a corner plot and a VLM.
