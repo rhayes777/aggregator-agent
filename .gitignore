@@ -5,3 +5,4 @@ __pycache__/
 data/
 aggregator_agent.egg-info/
 posterior/dataset/
+posterior/output/
