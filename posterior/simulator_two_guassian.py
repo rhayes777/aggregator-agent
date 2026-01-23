@@ -93,7 +93,7 @@ for i in range(total_datasets):
 
     centre_prior = af.UniformPrior(
         lower_limit=40.0,
-        upper_limit=60.0,
+        upper_limit=55.0,
     )
     normalization_prior = af.UniformPrior(
         lower_limit=1.0,
@@ -108,6 +108,11 @@ for i in range(total_datasets):
         centre=centre_prior.value_for(unit=float(np.random.random(1))),
         normalization=normalization_prior.value_for(unit=float(np.random.random(1))),
         sigma=sigma_prior.value_for(unit=float(np.random.random(1))),
+    )
+
+    centre_prior = af.UniformPrior(
+        lower_limit=45.0,
+        upper_limit=60.0,
     )
     gaussian_1 = af.ex.Gaussian(
         centre=centre_prior.value_for(unit=float(np.random.random(1))),
