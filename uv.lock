@@ -27,6 +27,7 @@ dependencies = [
     { name = "autofit" },
     { name = "pydantic" },
     { name = "pydantic-ai" },
+    { name = "ruff" },
 ]
 
 [package.optional-dependencies]
@@ -43,6 +44,7 @@ requires-dist = [
     { name = "pydantic", specifier = ">=2.12.5" },
     { name = "pydantic-ai", specifier = ">=1.25.0" },
     { name = "pytest", marker = "extra == 'dev'" },
+    { name = "ruff", specifier = ">=0.14.14" },
     { name = "ruff", marker = "extra == 'dev'" },
 ]
 provides-extras = ["dev"]
