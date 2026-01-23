@@ -22,7 +22,7 @@ args = parser.parse_args()
 output_file = args.path / "posterior_analysis_results.csv"
 
 with open(output_file, mode="w", newline='') as csvfile:
-    fieldnames = ['path', 'explanation', 'is_good_fit']
+    fieldnames = ['path', 'explanation', 'is_good_fit', 'may_be_multi_modal']
     writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
     writer.writeheader()
 
@@ -42,6 +42,7 @@ with open(output_file, mode="w", newline='') as csvfile:
         writer.writerow({
             'path': str(output.directory.relative_to(args.path)),
             'explanation': result.explanation,
-            'is_good_fit': result.is_good_fit
+            'is_good_fit': result.is_good_fit,
+            'may_be_multi_modal': result.may_be_multi_modal,
         })
 

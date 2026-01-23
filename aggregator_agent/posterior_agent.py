@@ -25,9 +25,11 @@ class Result(BaseModel):
     Attributes:
         explanation (str): A concise explanation of the fit quality.
         is_good_fit (bool): Whether the fit is considered good or not.
+        may_be_multi_modal (bool): Whether the posterior distributions may be multi-modal.
     """
     explanation: str
     is_good_fit: bool
+    may_be_multi_modal: bool
 
 
 class PosteriorFitAnalysis:
