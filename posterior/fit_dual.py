@@ -49,8 +49,8 @@ for i in range(total_datasets):
     print(model)
 
     centre_prior = af.UniformPrior(
-        lower_limit=40.0,
-        upper_limit=60.0,
+        lower_limit=0.0,
+        upper_limit=100.0,
     )
     normalization_prior = af.UniformPrior(
         lower_limit=1.0,
