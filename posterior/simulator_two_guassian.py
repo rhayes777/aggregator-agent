@@ -91,31 +91,28 @@ total_datasets = 50
 for i in range(total_datasets):
     dataset_path = path.join("dataset_dual", f"dataset_{i}")
 
-    # Shared priors
-    centre_prior = af.UniformPrior(40.0, 60.0)
-    normalization_prior = af.UniformPrior(1.0, 1e2)
-    sigma_prior = af.UniformPrior(1.0, 10.0)
-
-    # First Gaussian
-    centre_0 = centre_prior.value_for(unit=float(np.random.random(1)))
-    normalization_0 = normalization_prior.value_for(unit=float(np.random.random(1)))
-    sigma_0 = sigma_prior.value_for(unit=float(np.random.random(1)))
-
-    # Second Gaussian (slightly offset centre)
-    centre_1 = centre_0 + np.random.uniform(-10.0, 10.0)
-    normalization_1 = normalization_prior.value_for(unit=float(np.random.random(1)))
-    sigma_1 = sigma_prior.value_for(unit=float(np.random.random(1)))
-
-    gaussian_0 = af.ex.Gaussian(
-        centre=centre_0,
-        normalization=normalization_0,
-        sigma=sigma_0,
+    centre_prior = af.UniformPrior(
+        lower_limit=40.0,
+        upper_limit=60.0,
+    )
+    normalization_prior = af.UniformPrior(
+        lower_limit=1.0,
+        upper_limit=1e2,
+    )
+    sigma_prior = af.UniformPrior(
+        lower_limit=1.0,
+        upper_limit=10.0,
     )
 
+    gaussian_0 = af.ex.Gaussian(
+        centre=centre_prior.value_for(unit=float(np.random.random(1))),
+        normalization=normalization_prior.value_for(unit=float(np.random.random(1))),
+        sigma=sigma_prior.value_for(unit=float(np.random.random(1))),
+    )
     gaussian_1 = af.ex.Gaussian(
-        centre=centre_1,
-        normalization=normalization_1,
-        sigma=sigma_1,
+        centre=centre_prior.value_for(unit=float(np.random.random(1))),
+        normalization=normalization_prior.value_for(unit=float(np.random.random(1))),
+        sigma=sigma_prior.value_for(unit=float(np.random.random(1))),
     )
 
     simulate_dataset_1d_via_two_gaussians_from(
