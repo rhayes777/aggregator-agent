@@ -4,3 +4,4 @@ __pycache__/
 .idea/
 data/
 aggregator_agent.egg-info/
+posterior/dataset/
