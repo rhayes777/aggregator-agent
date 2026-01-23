@@ -28,7 +28,7 @@ aggregator = Aggregator.from_directory(
     directory=args.path,
 )
 
-outliers = identify_outliers(aggregator)
+outliers = identify_outliers(aggregator, alpha=0.9999)
 
 for outlier in outliers:
-    print(outlier)
+    print(outlier.directory)
