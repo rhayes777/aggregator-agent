@@ -14,7 +14,11 @@ Describe the quality of the fit.
 
 
 class PosteriorFitAnalysis:
-    def __init__(self, fit_path: Path, max_image_size: int = MAX_SIZE):
+    def __init__(
+        self,
+        fit_path: Path,
+        max_image_size: int = MAX_SIZE,
+    ):
         self.fit_path = fit_path
         self.max_image_size = max_image_size
 
