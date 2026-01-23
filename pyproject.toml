@@ -13,6 +13,7 @@ dependencies = [
     "pydantic>=2.12.5",
     "pydantic-ai>=1.25.0",
     "ruff>=0.14.14",
+    "scikit-learn>=1.8.0",
 ]
 
 [project.optional-dependencies]
