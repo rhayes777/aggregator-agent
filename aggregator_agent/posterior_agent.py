@@ -12,6 +12,7 @@ I will show you the corner plot resultant from a bayesian fit to imaging data.
 Describe the quality of the fit.
 
 If any posterior distribution appears to be pushed up against the edge of the prior, the fit is bad.
+If the data is unable to constrain the posterior distributions, the fit is bad.
 """
 
 
