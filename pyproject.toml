@@ -9,6 +9,7 @@ authors = [{ name = "Richard Hayes" }]
 # Your runtime dependencies
 dependencies = [
     "autofit>=2026.1.21.3",
+    "ptpython>=3.0.32",
     "pydantic>=2.12.5",
     "pydantic-ai>=1.25.0",
     "ruff>=0.14.14",

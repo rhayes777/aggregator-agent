@@ -1,6 +1,7 @@
 from argparse import ArgumentParser
 from pathlib import Path
 from autofit.aggregator.aggregator import Aggregator
+import csv
 
 from aggregator_agent.posterior_agent import MAX_SIZE, PosteriorFitAnalysis
 
@@ -18,15 +19,29 @@ parser.add_argument(
 )
 args = parser.parse_args()
 
-for output in Aggregator.from_directory(
-    directory=args.path,
-):
+output_file = args.path / "posterior_analysis_results.csv"
 
-    analysis = PosteriorFitAnalysis(
-        search_output=output,
-        max_image_size=args.max_size,
-    )
+with open(output_file, mode="w", newline='') as csvfile:
+    fieldnames = ['path', 'explanation', 'is_good_fit']
+    writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+    writer.writeheader()
 
-    result = analysis.corner_plot_analysis()
-    print("Corner Plot Analysis Result:")
-    print(result)
+    for output in Aggregator.from_directory(
+        directory=args.path,
+    ):
+
+        analysis = PosteriorFitAnalysis(
+            search_output=output,
+            max_image_size=args.max_size,
+        )
+
+        result = analysis.corner_plot_analysis()
+        print("Corner Plot Analysis Result:")
+        print(result)
+
+        writer.writerow({
+            'path': str(output.directory.relative_to(args.path)),
+            'explanation': result.explanation,
+            'is_good_fit': result.is_good_fit
+        })
+

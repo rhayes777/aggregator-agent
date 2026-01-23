@@ -47,7 +47,7 @@ class PosteriorFitAnalysis:
         img.save(buffer, format="PNG")
         return buffer.getvalue()
 
-    def corner_plot_analysis(self) -> str:
+    def corner_plot_analysis(self) -> Result:
         agent = Agent(
             model="gpt-5.2",
             instructions=CORNER_PLOT_SYSTEM_PROMPT,
