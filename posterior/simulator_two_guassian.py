@@ -92,8 +92,8 @@ for i in range(total_datasets):
     dataset_path = path.join("dataset_dual", f"dataset_{i}")
 
     centre_prior = af.UniformPrior(
-        lower_limit=0.0,
-        upper_limit=100.0,
+        lower_limit=40.0,
+        upper_limit=55.0,
     )
     normalization_prior = af.UniformPrior(
         lower_limit=1.0,

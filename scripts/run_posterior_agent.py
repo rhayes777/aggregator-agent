@@ -3,7 +3,7 @@ from pathlib import Path
 from autofit.aggregator.aggregator import Aggregator
 import csv
 
-from aggregator_agent.posterior.posterior_agent import MAX_SIZE, PosteriorFitAnalysis
+from aggregator_agent.posterior_agent import MAX_SIZE, PosteriorFitAnalysis
 
 parser = ArgumentParser()
 parser.add_argument(
@@ -21,30 +21,15 @@ args = parser.parse_args()
 
 output_file = args.path / "posterior_analysis_results.csv"
 
-fieldnames = [
-    # existing
-    "path",
-    "is_good_fit",
-    "may_be_multi_modal",
-
-    # richer diagnostics
-    "fit_quality",
-    "model_complexity",
-    "overall_confidence",
-    "summary",
-    "num_issues",
-    "issue_types",
-    "severities",
-    "recommended_actions",
-]
-
-with open(output_file, mode="w", newline="") as csvfile:
+with open(output_file, mode="w", newline='') as csvfile:
+    fieldnames = ['path', 'explanation', 'is_good_fit', 'may_be_multi_modal']
     writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
     writer.writeheader()
 
     for output in Aggregator.from_directory(
         directory=args.path,
     ):
+
         analysis = PosteriorFitAnalysis(
             search_output=output,
             max_image_size=args.max_size,
@@ -54,28 +39,10 @@ with open(output_file, mode="w", newline="") as csvfile:
         print("Corner Plot Analysis Result:")
         print(result)
 
-        # ---- flatten structured issues safely ----
-        issues = result.key_issues or []
-
-        issue_types = sorted({issue.issue_type for issue in issues})
-        severities = sorted({issue.severity for issue in issues})
-
-        recommended_actions = sorted({
-            action
-            for issue in issues
-            for action in (issue.recommended_actions or [])
-        })
-
         writer.writerow({
-            "path": str(output.directory.relative_to(args.path)),
-            "is_good_fit": result.is_good_fit,
-            "may_be_multi_modal": result.may_be_multi_modal,
-            "fit_quality": result.fit_quality,
-            "model_complexity": result.model_complexity,
-            "overall_confidence": result.overall_confidence,
-            "summary": result.summary,
-            "num_issues": len(issues),
-            "issue_types": "|".join(issue_types),
-            "severities": "|".join(severities),
-            "recommended_actions": "|".join(recommended_actions),
+            'path': str(output.directory.relative_to(args.path)),
+            'explanation': result.explanation,
+            'is_good_fit': result.is_good_fit,
+            'may_be_multi_modal': result.may_be_multi_modal,
         })
+
