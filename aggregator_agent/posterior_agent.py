@@ -14,6 +14,7 @@ Describe the quality of the fit.
 Reasons the fit may be bad include:
 Any posterior distribution appears to be pushed up against the edge of the prior.
 The data is unable to constrain the posterior distributions, the fit is bad.
+The posterior distributions are multi-modal.
 """
 
 

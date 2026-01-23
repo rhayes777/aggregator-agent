@@ -48,9 +48,18 @@ for i in range(total_datasets):
     print("Model `Gaussian` object: \n")
     print(model)
 
-    model.centre = af.UniformPrior(lower_limit=0.0, upper_limit=100.0)
-    model.normalization = af.UniformPrior(lower_limit=0.0, upper_limit=1e2)
-    model.sigma = af.UniformPrior(lower_limit=0.0, upper_limit=30.0)
+    centre_prior = af.UniformPrior(
+        lower_limit=40.0,
+        upper_limit=60.0,
+    )
+    normalization_prior = af.UniformPrior(
+        lower_limit=1.0,
+        upper_limit=1e2,
+    )
+    sigma_prior = af.UniformPrior(
+        lower_limit=1.0,
+        upper_limit=10.0,
+    )
 
     analysis = af.ex.Analysis(data=data, noise_map=noise_map)
 
