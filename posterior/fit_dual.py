@@ -49,16 +49,16 @@ for i in range(total_datasets):
     print(model)
 
     centre_prior = af.UniformPrior(
-        lower_limit=20.0,
-        upper_limit=80.0,
+        lower_limit=40.0,
+        upper_limit=60.0,
     )
     normalization_prior = af.UniformPrior(
         lower_limit=1.0,
-        upper_limit=1e3,
+        upper_limit=1e2,
     )
     sigma_prior = af.UniformPrior(
         lower_limit=1.0,
-        upper_limit=100.0,
+        upper_limit=10.0,
     )
 
     analysis = af.ex.Analysis(data=data, noise_map=noise_map)
