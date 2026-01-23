@@ -1,3 +1,12 @@
+"""
+Multivariate outlier detection via PCA + (Robust) Mahalanobis distance.
+
+Usage:
+    python scripts/run_outlier_detection.py /path/to/output_directory
+
+Prints any search outputs identified as outliers.
+"""
+
 from argparse import ArgumentParser
 from collections import defaultdict
 from pathlib import Path
