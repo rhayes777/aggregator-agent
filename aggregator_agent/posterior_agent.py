@@ -1,8 +1,8 @@
 from io import BytesIO
 
-from pathlib import Path
-
 from PIL import Image
+from autofit.aggregator.search_output import AbstractSearchOutput
+from pydantic import BaseModel
 from pydantic_ai import Agent, BinaryContent
 
 MAX_SIZE = 512
@@ -13,36 +13,45 @@ Describe the quality of the fit.
 """
 
 
+class Result(BaseModel):
+    """
+    The result of the posterior fit analysis.
+
+    Attributes:
+        explanation (str): A concise explanation of the fit quality.
+        is_good_fit (bool): Whether the fit is considered good or not.
+    """
+    explanation: str
+    is_good_fit: bool
+
+
 class PosteriorFitAnalysis:
     def __init__(
-        self,
-        fit_path: Path,
-        max_image_size: int = MAX_SIZE,
+            self,
+            search_output: AbstractSearchOutput,
+            max_image_size: int = MAX_SIZE,
     ):
-        self.fit_path = fit_path
+        self.search_output = search_output
         self.max_image_size = max_image_size
 
     @property
-    def corner_plot_path(self) -> Path:
-        return self.fit_path / "image/search/corner_anesthetic.png"
-
-    @property
     def image_bytes(self) -> bytes:
-        with Image.open(self.corner_plot_path) as img:
-            img = img.convert("RGB")
-            img.thumbnail(
-                (self.max_image_size, self.max_image_size),
-                Image.Resampling.LANCZOS,
-            )
+        img = self.search_output.image("search/corner_anesthetic")
+        img = img.convert("RGB")
+        img.thumbnail(
+            (self.max_image_size, self.max_image_size),
+            Image.Resampling.LANCZOS,
+        )
 
-            buffer = BytesIO()
-            img.save(buffer, format="PNG")
-            return buffer.getvalue()
+        buffer = BytesIO()
+        img.save(buffer, format="PNG")
+        return buffer.getvalue()
 
     def corner_plot_analysis(self) -> str:
         agent = Agent(
             model="gpt-5.2",
             instructions=CORNER_PLOT_SYSTEM_PROMPT,
+            output_type=Result,
         )
 
         result = agent.run_sync(
