@@ -1,14 +1,29 @@
 from collections import defaultdict
-from autofit.aggregator.aggregator import Aggregator
+
+from autofit import SearchOutput
 import pandas as pd
+from autofit.database.aggregator.aggregator import AbstractAggregator
 
 from aggregator_agent.outliers.pca_mahalanobis import pca_mahalanobis_outliers, plot_outlier_diagnostics
 
 
-def identify_outliers(aggregator: Aggregator):
-    data = defaultdict(list)
+def identify_outliers(aggregator: AbstractAggregator, ) -> list[SearchOutput]:
+    """
+    Identify outlier search outputs in the given aggregator using PCA and Mahalanobis distance.
 
-    for output in aggregator:
+    Parameters
+    ----------
+    aggregator : AbstractAggregator
+        The aggregator containing search outputs to analyze.
+
+    Returns
+    -------
+    A list of search outputs identified as outliers.
+    """
+    data = defaultdict(list)
+    search_outputs = list(aggregator)
+
+    for output in search_outputs:
         for key, value in output.samples_summary.max_log_likelihood_sample.kwargs.items():
             data[key].append(value)
 
@@ -18,5 +33,5 @@ def identify_outliers(aggregator: Aggregator):
     plot_outlier_diagnostics(df, result, pca_variance=0.95, random_state=0, show=True)
 
     return [
-        aggregator[index] for index in result.outlier_indices
+        search_outputs[index] for index in result.outlier_indices
     ]
